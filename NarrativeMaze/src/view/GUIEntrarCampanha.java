@@ -22,7 +22,9 @@ public class GUIEntrarCampanha extends javax.swing.JInternalFrame {
     public void abrirGUICampanhaDD(){
         GUICampanhaDD gDD = new GUICampanhaDD();
         
-        jdpAreaDeTrabalho.add(gDD);
+        getParent().add(gDD);
+        
+        
         
         gDD.setVisible(true);
         
@@ -126,7 +128,7 @@ public class GUIEntrarCampanha extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDDActionPerformed
-        // TODO add your handling code here:
+abrirGUICampanhaDD();
     }//GEN-LAST:event_jbtnDDActionPerformed
 
     private void jbtnDDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbtnDDKeyPressed
