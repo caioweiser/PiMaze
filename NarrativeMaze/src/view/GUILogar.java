@@ -5,7 +5,11 @@
  */
 package view;
 
+import dao.loginDAO;
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import modelo.LoginVO;
 
 /**
@@ -24,11 +28,26 @@ public class GUILogar extends javax.swing.JFrame {
     
     private void Logar(){
         LoginVO lVO = new LoginVO();
-        
+        try{
         lVO.setNome(jtfNome.getText());
         lVO.setEmail(jtfEmail.getText());
         lVO.setSenha(jpfSenha.getText());
         
+        loginDAO lDAO = new loginDAO();
+        
+        ResultSet rs = lDAO.autenticarLogin(lVO);
+        
+        if(rs.next()){
+            GUIPrincipal gPRI = new GUIPrincipal();
+            gPRI.setVisible(true);
+            
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos","Erro",JOptionPane.ERROR_MESSAGE);
+        }
+        }catch(SQLException se){
+            JOptionPane.showMessageDialog(null, "Erro ao se autenticar GUILogar");
+        }
     }
     
     private void Limpar(){
