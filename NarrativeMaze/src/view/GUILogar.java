@@ -26,11 +26,12 @@ public class GUILogar extends javax.swing.JFrame {
     }
 
     
-    private void Logar(){
-        LoginVO lVO = new LoginVO();
+    private void logar(){
+        
         try{
+        LoginVO lVO = new LoginVO();
         lVO.setNome(jtfNome.getText());
-        lVO.setEmail(jtfEmail.getText());
+        
         lVO.setSenha(jpfSenha.getText());
         
         loginDAO lDAO = new loginDAO();
@@ -38,8 +39,8 @@ public class GUILogar extends javax.swing.JFrame {
         ResultSet rs = lDAO.autenticarLogin(lVO);
         
         if(rs.next()){
-            GUIPrincipal gPRI = new GUIPrincipal();
-            gPRI.setVisible(true);
+            GUIPrincipal gp = new GUIPrincipal();
+            gp.setVisible(true);
             
             dispose();
         }else{
@@ -172,12 +173,14 @@ public class GUILogar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogarActionPerformed
-        Logar();
+        logar();
+        Limpar();
     }//GEN-LAST:event_jbtnLogarActionPerformed
 
     private void jbtnLogarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbtnLogarKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            Logar();
+            logar();
+            Limpar();
         }
     }//GEN-LAST:event_jbtnLogarKeyPressed
 

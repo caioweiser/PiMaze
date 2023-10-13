@@ -6,13 +6,22 @@
 package view;
 
 import java.awt.event.KeyEvent;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 
 /**
  *
  * @author 182210010
  */
-public class GUIPrincipal extends javax.swing.JFrame {
+public class GUIPrincipal extends javax.swing.JFrame implements InternalFrameListener {
 
+    boolean flagGUIEntrarCampanha  = false;
+    boolean flagGUICriarCampanha  = false;
+    /*boolean flagGUICenasDD  = false;
+    boolean flagGUICampanhaDD  = false;
+    boolean flagGUIParentes  = false;
+    */
+    
     /**
      * Creates new form GUIPrincipal
      */
@@ -21,22 +30,35 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     
-    public void abrirGUICriarCampanha(){
+    private void abrirGUICriarCampanha(){
+        
+        if(!flagGUICriarCampanha){
         GUICriarCampanha gCC = new GUICriarCampanha();
         
         jdpAreaDeTrabalho.add(gCC);
         
         gCC.setVisible(true);
         
+        flagGUICriarCampanha = true;
+        
+        gCC.addInternalFrameListener(this);
+            
+        
     }
-    
-    public void abrirGUIEntrarCampanha(){
+        
+    }
+    private void abrirGUIEntrarCampanha(){
+        if(!flagGUIEntrarCampanha){
         GUIEntrarCampanha gEC = new GUIEntrarCampanha();
         
         jdpAreaDeTrabalho.add(gEC);
         
         gEC.setVisible(true);
         
+        flagGUIEntrarCampanha = true;
+        
+        gEC.addInternalFrameListener(this);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -223,4 +245,41 @@ if(evt.getKeyCode() == KeyEvent.VK_ENTER){
     private javax.swing.JButton jbtnCriarCampanha;
     private javax.swing.JDesktopPane jdpAreaDeTrabalho;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void internalFrameOpened(InternalFrameEvent e) {
+        
+        
+    }
+
+    @Override
+    public void internalFrameClosing(InternalFrameEvent e) {
+       
+    }
+
+    @Override
+    public void internalFrameClosed(InternalFrameEvent e) {
+        if(e.getInternalFrame() instanceof GUICriarCampanha){
+            flagGUICriarCampanha = false;
+        } 
+        if(e.getInternalFrame() instanceof GUIEntrarCampanha){
+            flagGUIEntrarCampanha = false;
+        }
+    }
+
+    @Override
+    public void internalFrameIconified(InternalFrameEvent e) {
+    }
+
+    @Override
+    public void internalFrameDeiconified(InternalFrameEvent e) {
+    }
+
+    @Override
+    public void internalFrameActivated(InternalFrameEvent e) {
+    }
+
+    @Override
+    public void internalFrameDeactivated(InternalFrameEvent e) {
+    }
 }

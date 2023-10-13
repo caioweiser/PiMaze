@@ -5,12 +5,15 @@
  */
 package view;
 
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
+
 /**
  *
  * @author 182210010
  */
-public class GUIEntrarCampanha extends javax.swing.JInternalFrame {
-
+public class GUIEntrarCampanha extends javax.swing.JInternalFrame implements InternalFrameListener {
+    boolean flagGUICampanhaDD = false;
     /**
      * Creates new form GUIEntrarCampanha
      */
@@ -20,14 +23,18 @@ public class GUIEntrarCampanha extends javax.swing.JInternalFrame {
 
     
     public void abrirGUICampanhaDD(){
+        if(!flagGUICampanhaDD){
         GUICampanhaDD gDD = new GUICampanhaDD();
         
         getParent().add(gDD);
         
         
-        
         gDD.setVisible(true);
         
+        flagGUICampanhaDD = true;
+        
+        gDD.addInternalFrameListener(this);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,7 +54,6 @@ public class GUIEntrarCampanha extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Campanhas");
 
         jPanel1.setBackground(new java.awt.Color(159, 69, 129));
@@ -143,4 +149,41 @@ abrirGUICampanhaDD();
     private javax.swing.JButton jbtnGurps;
     private javax.swing.JButton jtbnTormenta;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void internalFrameOpened(InternalFrameEvent e) {
+        
+    }
+
+    @Override
+    public void internalFrameClosing(InternalFrameEvent e) {
+        
+    }
+
+    @Override
+    public void internalFrameClosed(InternalFrameEvent e) {
+        if(e.getInternalFrame() instanceof GUIEntrarCampanha){
+            flagGUICampanhaDD = false;
+        }
+    }
+
+    @Override
+    public void internalFrameIconified(InternalFrameEvent e) {
+        
+    }
+
+    @Override
+    public void internalFrameDeiconified(InternalFrameEvent e) {
+        
+    }
+
+    @Override
+    public void internalFrameActivated(InternalFrameEvent e) {
+        
+    }
+
+    @Override
+    public void internalFrameDeactivated(InternalFrameEvent e) {
+        
+    }
 }

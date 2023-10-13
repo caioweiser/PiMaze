@@ -39,7 +39,6 @@ public class GUICriarCampanha extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Criar Campanhas");
 
         jLayeredPane1.setBackground(new java.awt.Color(0, 242, 242));

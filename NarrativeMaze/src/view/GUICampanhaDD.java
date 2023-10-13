@@ -5,12 +5,17 @@
  */
 package view;
 
+import java.awt.event.KeyEvent;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
+
 /**
  *
  * @author 182210010
  */
-public class GUICampanhaDD extends javax.swing.JInternalFrame {
-
+public class GUICampanhaDD extends javax.swing.JInternalFrame implements InternalFrameListener {
+boolean flagVercenas = false;
+boolean flagCriarcenas = false;
     /**
      * Creates new form CampanhaDD
      */
@@ -18,6 +23,34 @@ public class GUICampanhaDD extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    
+    private void verCenasDD(){
+        if(!flagVercenas){
+        GUICenasDD gcDD = new GUICenasDD();
+        
+        getParent().add(gcDD);
+        
+        gcDD.setVisible(true);
+        
+        flagVercenas = true;
+        
+        gcDD.addInternalFrameListener(this);
+        }
+    }
+    
+    private void criarCenasDD(){
+        if(!flagCriarcenas){
+        GUICriarCenas gccDD = new GUICriarCenas();
+        
+        getParent().add(gccDD);
+        
+        gccDD.setVisible(true);
+        
+        flagCriarcenas = true;
+        
+        gccDD.addInternalFrameListener(this);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,8 +64,13 @@ public class GUICampanhaDD extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbtnVerCenas = new javax.swing.JButton();
+        jbtnCriarCenas = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("Campanha D&D");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "História 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -67,21 +105,41 @@ public class GUICampanhaDD extends javax.swing.JInternalFrame {
                 .addContainerGap(72, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Ver Cenas");
+        jbtnVerCenas.setText("Ver Cenas");
+        jbtnVerCenas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnVerCenasActionPerformed(evt);
+            }
+        });
+        jbtnVerCenas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jbtnVerCenasKeyPressed(evt);
+            }
+        });
 
-        jButton3.setText("Criar Cenas");
+        jbtnCriarCenas.setText("Criar Cenas");
+        jbtnCriarCenas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCriarCenasActionPerformed(evt);
+            }
+        });
+        jbtnCriarCenas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jbtnCriarCenasKeyPressed(evt);
+            }
+        });
 
-        jLayeredPane2.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(jbtnVerCenas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(jbtnCriarCenas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addComponent(jButton2)
+                .addComponent(jbtnVerCenas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(jbtnCriarCenas)
                 .addContainerGap())
         );
         jLayeredPane2Layout.setVerticalGroup(
@@ -89,8 +147,8 @@ public class GUICampanhaDD extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jbtnVerCenas)
+                    .addComponent(jbtnCriarCenas))
                 .addContainerGap())
         );
 
@@ -122,13 +180,72 @@ public class GUICampanhaDD extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jbtnVerCenasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVerCenasActionPerformed
+       verCenasDD();
+    }//GEN-LAST:event_jbtnVerCenasActionPerformed
+
+    private void jbtnCriarCenasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCriarCenasActionPerformed
+criarCenasDD();
+    }//GEN-LAST:event_jbtnCriarCenasActionPerformed
+
+    private void jbtnCriarCenasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbtnCriarCenasKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           criarCenasDD();
+       }
+    }//GEN-LAST:event_jbtnCriarCenasKeyPressed
+
+    private void jbtnVerCenasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbtnVerCenasKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            verCenasDD();
+        }
+    }//GEN-LAST:event_jbtnVerCenasKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JButton jbtnCriarCenas;
+    private javax.swing.JButton jbtnVerCenas;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void internalFrameOpened(InternalFrameEvent e) {
+        
+    }
+
+    @Override
+    public void internalFrameClosing(InternalFrameEvent e) {
+        
+    }
+
+    @Override
+    public void internalFrameClosed(InternalFrameEvent e) {
+            if(e.getInternalFrame() instanceof GUICenasDD){
+                flagVercenas = false;
+            }
+            if(e.getInternalFrame() instanceof GUICriarCenas){
+                flagCriarcenas = false;
+            }
+        
+    }
+
+    @Override
+    public void internalFrameIconified(InternalFrameEvent e) {
+        
+    }
+
+    @Override
+    public void internalFrameDeiconified(InternalFrameEvent e) {
+    }
+
+    @Override
+    public void internalFrameActivated(InternalFrameEvent e) {
+    }
+
+    @Override
+    public void internalFrameDeactivated(InternalFrameEvent e) {
+        
+    }
 }

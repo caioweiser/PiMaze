@@ -32,6 +32,11 @@ public class GUIParentes extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("Parentes Cenas");
+
         jTextField1.setText("Possibilidades  1 Cena1");
 
         jTextField2.setText("Possibilidade 2 Cena 1");
